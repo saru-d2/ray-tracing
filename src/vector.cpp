@@ -1,4 +1,7 @@
-#include<bits/stdc++.h>
+#include<vector>
+#include<iostream>
+#include<cmath>
+
 #include"vector.h"
 
     vec3::vec3(float a, float b, float c){
