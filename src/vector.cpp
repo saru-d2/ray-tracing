@@ -2,8 +2,8 @@
 #include"vector.h"
 
     vec3::vec3(float a, float b, float c){
-        std::cout<<a<<b<<c<<std::endl;
         v[0] = a, v[1] = b, v[2] = c;
+        std::cout<<"HII"<<std::endl;
     };
 
     vec3::vec3(){
