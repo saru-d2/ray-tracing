@@ -14,6 +14,7 @@ class scene{
     vector<plane> planes;
 
     scene(vector<sphere> spheres, vector<plane>);
+    scene(){}
     bool hit(ray &r, rayInfo &rInfo, float &tMin);
 };
 
