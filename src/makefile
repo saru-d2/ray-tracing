@@ -1,2 +1,6 @@
+CC=g++-11
 make: 
-	g++ -o raytracer *.cpp *.h
+	$(CC) -o out *.cpp
+
+debug: 
+	$(CC) -g -o out *.cpp
