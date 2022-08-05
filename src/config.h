@@ -11,13 +11,15 @@ int img_width = img_height * aspect_ratio;
 
 float viewportHeight = 2.0;
 float viewportWidth = viewportHeight * aspect_ratio;
-float focal_length = 1.0;
+float focal_length = -1.0;
 
 float viewportMultiplierH = viewportHeight / img_height;
 float viewportMultiplierW = viewportWidth / img_width;
 
 float viewportOffsetH = -viewportHeight / 2.0;
 float viewportOffsetW = -viewportWidth / 2.0;
+
+float minDrawDist = 0.1;
 
 glm::vec3 camera_origin(0, 0, 0);
 

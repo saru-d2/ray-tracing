@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/saru/arvr/ray-tracing'
+make: Leaving directory `/Users/saru/arvr/ray-tracing'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
