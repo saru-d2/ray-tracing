@@ -13,7 +13,7 @@ class camera {
     camera(config c, scene sc);
     camera(){};
     void render();
-    void ./write_img(std::string filename);
+    void write_img(std::string filename);
     glm::vec3 colorAtRay(ray);
 };
 
