@@ -2,8 +2,8 @@
 #define CONFIG_H
 
 // some common variables
-
 #include "../libraries/glm/glm.hpp"
+#include <string>
 
 struct config {
     int img_height = 240;
@@ -20,9 +20,13 @@ struct config {
     float viewportOffsetH = -viewportHeight / 2.0;
     float viewportOffsetW = -viewportWidth / 2.0;
 
-    float minDrawDist = 0.1;
-
+    float minDrawDist = 0.001;
+    int numSamplesAntiAliasing = 100;
     glm::vec3 camera_origin = glm::vec3(0, 0, 0);
+
+    std::string display_mode = "normals";
+    // std::string display_mode = "general";
+    int maxDepth = 3;
 };
 
 #endif

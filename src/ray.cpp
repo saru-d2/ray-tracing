@@ -32,13 +32,6 @@ bool ray::hit(sphere s, rayInfo &rInfo, float closestSoFar, float tMin){
     return true;
 }
 
-// glm::vec3 ray::surfaceNormal(sphere s){
-//     auto t = hit(s, rayInfo &rInfo);
-//     glm::vec3 N = at(t) - s.center;
-//     N /= glm::length(N);
-
-//     return 0.5f *( N + 1.0f );
-// }
 
 bool ray::hit(plane p, rayInfo &rInfo, float closestSoFar, float tMin){
     // plane intersection
@@ -53,10 +46,22 @@ bool ray::hit(plane p, rayInfo &rInfo, float closestSoFar, float tMin){
     return true;
 }
 
-// glm::vec3 ray::surfaceNormal(plane p){
-//     float t = hit(p);
-//     glm::vec3 N = p.normal;
-//     N /= glm::length(N);
+bool ray::hit(triangle tr, rayInfo &rInfo, float closestSoFar, float tMin){
+    glm::vec3 rov0 = origin - tr.verts[0];
+    glm::vec3  q = glm::cross( rov0, dir );
+    
+    float d = 1.0/glm::dot( dir, -tr.normal );
+    float u = d * glm::dot( -q, tr.v2v0 );
+    float v = d * glm::dot(  q, tr.v1v0 );
+    float t = d * glm::dot( tr.normal, rov0 );
 
-//     return 0.5f *( N + 1.0f );
-// }
+    if( u<0.0 || v<0.0 || (u+v)>1.0 ) return false;
+    
+    if (t < tMin or t > closestSoFar) return false;
+    
+    rInfo.t = t;
+    rInfo.p = at(t);
+    rInfo.normal = tr.normal;
+
+    return true;
+}

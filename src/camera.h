@@ -13,8 +13,9 @@ class camera {
     camera(config c, scene sc);
     camera(){};
     void render();
+    glm::vec3 getColor(int i, int j);
     void write_img(std::string filename);
-    glm::vec3 colorAtRay(ray);
+    glm::vec3 colorAtRay(ray r, int depth);
 };
 
 #endif

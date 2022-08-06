@@ -5,6 +5,7 @@
 #include "sphere.h"
 #include "plane.h"
 #include "utils.h"
+#include "triangle.h"
 
 class ray{
     public:
@@ -17,8 +18,10 @@ class ray{
 
     bool hit(sphere s, rayInfo &r, float closestSoFar, float tMin);
     bool hit(plane p, rayInfo &r, float closestSoFar, float tMin);
+    bool hit(triangle t, rayInfo &r, float closestSoFar, float tMin);
     glm::vec3 surfaceNormal(sphere s);
     glm::vec3 surfaceNormal(plane s);
+    glm::vec3 surfaceNormal(triangle t);
     // bool hit(trimesh);
 };
 
