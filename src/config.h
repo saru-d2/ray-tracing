@@ -6,7 +6,7 @@
 #include <string>
 
 struct config {
-    int img_height = 240;
+    int img_height = 480;
     double aspect_ratio = 4.0 / 3.0;
     int img_width = img_height * aspect_ratio;
 
@@ -21,11 +21,11 @@ struct config {
     float viewportOffsetW = -viewportWidth / 2.0;
 
     float minDrawDist = 0.001;
-    int numSamplesAntiAliasing = 40;
+    int numSamplesAntiAliasing = 30;
     glm::vec3 camera_origin = glm::vec3(0, 0, 0);
 
-    std::string display_mode = "normals";
-    // std::string display_mode = "general";
+    // std::string display_mode = "normals";
+    std::string display_mode = "general";
     int maxDepth = 4;
 
     glm::vec3 lightValue = glm::vec3(3, 3, 3);
@@ -40,6 +40,7 @@ struct config {
     glm::vec3 cornell_gray = glm::vec3(0.5, 0.5, 0.5);
 
     float refractive_index = 0.6;
+    glm::vec3 checkerColor = cyan;
 };
 
 #endif

@@ -40,9 +40,9 @@ glm::vec3 camera::getColor(int i, int j) {
 
 void camera::render() {
     for (int i = 0; i < conf.img_height; i++) {
-        if (i % 10 == 0)
-            cout << '\r' << (float)i / (float)conf.img_height * 100.0
-                 << "% done" << std::flush;
+        // if (i % 10 == 0)
+        cout << '\r' << (float)i / (float)conf.img_height * 100.0 << "% done"
+             << std::flush;
         for (int j = 0; j < conf.img_width; j++) {
             auto color = getColor(i, j);
             color = clamp(color);
@@ -70,15 +70,32 @@ glm::vec3 camera::colorAtRay(ray r, int depth = 1) {
         }
 
         if (rInfo.material == "mirror") {
-            glm::vec3 dir = r.dir - 2*glm::dot(r.dir,rInfo.normal)*rInfo.normal;
-            return colorAtRay(ray(rInfo.p, glm::normalize(dir)),
-                              depth - 1);
+            glm::vec3 dir =
+                r.dir - 2 * glm::dot(r.dir, rInfo.normal) * rInfo.normal;
+            return colorAtRay(ray(rInfo.p, glm::normalize(dir)), depth - 1);
         }
 
         if (rInfo.material == "glass") {
             //  snells
-            glm::vec3 dir1 = refract(r.dir, rInfo.normal, conf.refractive_index);
-            return colorAtRay(ray(rInfo.p, glm::normalize(dir1)), depth-1);
+            glm::vec3 dir1 =
+                refract(r.dir, rInfo.normal, conf.refractive_index);
+            return colorAtRay(ray(rInfo.p, glm::normalize(dir1)), depth - 1);
+        }
+
+        if (rInfo.material == "checker") {
+            float sins = sin(10.0 * rInfo.p.x) * sin(10.0 * rInfo.p.y) *
+                         sin(10.0 * rInfo.p.z);
+
+            glm::vec3 tar = rInfo.p + rInfo.normal + sphericalRand();
+
+            if (sins > 0)
+                return 0.7f * rInfo.color *
+                       colorAtRay(ray(rInfo.p, glm::normalize(tar - rInfo.p)),
+                                  depth - 1);
+
+            return 0.7f * conf.checkerColor *
+                   colorAtRay(ray(rInfo.p, glm::normalize(tar - rInfo.p)),
+                              depth - 1);
         }
 
         if (rInfo.material == "diffuse") {

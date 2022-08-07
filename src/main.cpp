@@ -15,8 +15,8 @@ int main() {
 
     config conf;
 
-    sphere sp1(glm::vec3(0, -0.5, -1.5), 0.5, "mirror");
-    sphere sp2(glm::vec3(-1.5, 1.5, -1.5), 0.5, "glass");
+    sphere sp1(glm::vec3(2, -2, -3), 1, "mirror");
+    sphere sp2(glm::vec3(-0.1, 0.1, -0.8), 0.2, "glass");
     // sphere sp2(glm::vec3(-1, 1, -1), 0.2, "diffuse");
     // sphere sp3(glm::vec3(-1, -1, -1), 0.2, "diffuse");
     // sphere sp4(glm::vec3(-1, 1, -2), 0.2, "diffuse");
@@ -43,38 +43,38 @@ int main() {
     // pyramid
     triangle pyr1(
         vector<glm::vec3>{
-            glm::vec3(1, 0.5, -1.5),
-            glm::vec3(0.2, 0.3, -1.7),
-            glm::vec3(0.2, 0.5, -1.2),
+            glm::vec3(0, 0.5, -2),
+            glm::vec3(0.3, 0, -2.2),
+            glm::vec3(0.6, 0.5, -1.8),
         }, 
-        "diffuse");
+        "mirror");
 
     triangle pyr2(
         vector<glm::vec3>{
-            glm::vec3(1, 0.5, -1.5),
-            glm::vec3(0.2, 0.5, -1.2),
-            glm::vec3(0.2, 1, -1.),
+            glm::vec3(0, 0.5, -2),
+            glm::vec3(0.6, 0.5, -1.8),
+            glm::vec3(0.3, 1, -2.2),
         }, 
-        "diffuse");
+        "mirror");
 
     triangle pyr3(
         vector<glm::vec3>{
-            glm::vec3(0.2, 0.5, -1.2),
-            glm::vec3(0.2, 0.3, -1.7),
-            glm::vec3(0.2, 1, -1.7),
+            glm::vec3(0.6, 0.5, -1.8),
+            glm::vec3(0.3, 0, -2.2),
+            glm::vec3(0.3, 1, -2.2),
         }, 
-        "diffuse");
+        "mirror");
 
     triangle pyr4(
         vector<glm::vec3>{
-            glm::vec3(1, 0.5, -1.5),
-            glm::vec3(0.2, 1, -1.7),
-            glm::vec3(0.2, 0.2, -1.7),
+            glm::vec3(0, 0.5, -2),
+            glm::vec3(0.3, 1, -2.2),
+            glm::vec3(0.3, 0, -2.2),
         }, 
-        "diffuse");
+        "mirror");
         
 
-    plane p1(glm::vec3(-1, 0, 0), 3, "diffuse", conf.cornell_gray);
+    plane p1(glm::vec3(-1, 0, 0), 3, "checker", conf.cornell_gray);
     plane p2(glm::vec3(1, 0, 0), 3, "diffuse", conf.cornell_gray);
     plane p3(glm::vec3(0, 1, 0), 3, "diffuse", conf.green);
     plane p4(glm::vec3(0, -1, 0), 3, "diffuse", conf.red);
