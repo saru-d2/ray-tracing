@@ -28,6 +28,8 @@ bool ray::hit(sphere s, rayInfo &rInfo, float closestSoFar, float tMin){
     glm::vec3 N = at(t) - s.center;
     N /= glm::length(N);
     rInfo.normal = N;
+    rInfo.material = s.material;
+    rInfo.color = s.color;
 
     return true;
 }
@@ -42,6 +44,8 @@ bool ray::hit(plane p, rayInfo &rInfo, float closestSoFar, float tMin){
     rInfo.t = t;
     rInfo.p = at(t);
     rInfo.normal = p.normal;
+    rInfo.material = p.material;
+    rInfo.color = p.color;
 
     return true;
 }
@@ -50,10 +54,18 @@ bool ray::hit(triangle tr, rayInfo &rInfo, float closestSoFar, float tMin){
     glm::vec3 rov0 = origin - tr.verts[0];
     glm::vec3  q = glm::cross( rov0, dir );
     
-    float d = 1.0/glm::dot( dir, -tr.normal );
+    
+    float d = 1.0/glm::dot( dir, tr.unnormalisedNormal );
     float u = d * glm::dot( -q, tr.v2v0 );
     float v = d * glm::dot(  q, tr.v1v0 );
-    float t = d * glm::dot( tr.normal, rov0 );
+    float t = d * glm::dot( -tr.unnormalisedNormal, rov0 );
+
+    // vec3  q = cross( rov0, rd );
+    // float d = 1.0/dot( rd, n );
+    // float u = d*dot( -q, v2v0 );
+    // float v = d*dot(  q, v1v0 );
+    // float t = d*dot( -n, rov0 );
+    // if( u<0.0 || v<0.0 || (u+v)>1.0 ) t = -1.0;
 
     if( u<0.0 || v<0.0 || (u+v)>1.0 ) return false;
     
@@ -62,6 +74,8 @@ bool ray::hit(triangle tr, rayInfo &rInfo, float closestSoFar, float tMin){
     rInfo.t = t;
     rInfo.p = at(t);
     rInfo.normal = tr.normal;
+    rInfo.material = tr.material;
+    rInfo.color = tr.color;
 
     return true;
 }

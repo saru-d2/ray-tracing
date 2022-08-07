@@ -21,12 +21,25 @@ struct config {
     float viewportOffsetW = -viewportWidth / 2.0;
 
     float minDrawDist = 0.001;
-    int numSamplesAntiAliasing = 100;
+    int numSamplesAntiAliasing = 40;
     glm::vec3 camera_origin = glm::vec3(0, 0, 0);
 
     std::string display_mode = "normals";
     // std::string display_mode = "general";
-    int maxDepth = 3;
+    int maxDepth = 4;
+
+    glm::vec3 lightValue = glm::vec3(3, 3, 3);
+    
+    glm::vec3 red = glm::vec3(1, 0, 0);
+    glm::vec3 green = glm::vec3(0, 1, 0);
+    glm::vec3 blue = glm::vec3(0, 0, 1);
+    glm::vec3 yellow = glm::vec3(1, 1, 0);
+    glm::vec3 magenta = glm::vec3(1, 0, 1);
+    glm::vec3 cyan = glm::vec3(0, 1, 1);
+    glm::vec3 white = glm::vec3(1, 1, 1);
+    glm::vec3 cornell_gray = glm::vec3(0.5, 0.5, 0.5);
+
+    float refractive_index = 0.6;
 };
 
 #endif
