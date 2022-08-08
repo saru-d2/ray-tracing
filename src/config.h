@@ -6,7 +6,7 @@
 #include <string>
 
 struct config {
-    int img_height = 480;
+    int img_height = 240;
     double aspect_ratio = 4.0 / 3.0;
     int img_width = img_height * aspect_ratio;
 
