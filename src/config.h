@@ -41,6 +41,8 @@ struct config {
 
     float refractive_index = 0.6;
     glm::vec3 checkerColor = cyan;
+
+    bool bvhFlag = true;
 };
 
 #endif

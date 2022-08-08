@@ -57,8 +57,18 @@ void camera::render() {
 glm::vec3 camera::colorAtRay(ray r, int depth = 1) {
     if (depth <= 0) return glm::vec3(0, 0, 0);
     rayInfo rInfo;
-    bool h = scn.hit(r, rInfo, conf.minDrawDist);
-    if (rInfo.material == "") cout << "HEY" << endl;
+
+    bool h = false;
+
+    float closestSoFar = std::numeric_limits<float>::max();
+    if (conf.bvhFlag == false) {
+        h = scn.hit(r, rInfo, conf.minDrawDist);
+    }
+
+    else {
+        h = scn.bvhHit(r, rInfo, conf.minDrawDist, scn.BVH.root, closestSoFar);
+    }
+
     if (h) {
         if (conf.display_mode == "normals") {
             rInfo.normal = glm::normalize(rInfo.normal + 1.0f);

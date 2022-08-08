@@ -60,13 +60,6 @@ bool ray::hit(triangle tr, rayInfo &rInfo, float closestSoFar, float tMin){
     float v = d * glm::dot(  q, tr.v1v0 );
     float t = d * glm::dot( -tr.unnormalisedNormal, rov0 );
 
-    // vec3  q = cross( rov0, rd );
-    // float d = 1.0/dot( rd, n );
-    // float u = d*dot( -q, v2v0 );
-    // float v = d*dot(  q, v1v0 );
-    // float t = d*dot( -n, rov0 );
-    // if( u<0.0 || v<0.0 || (u+v)>1.0 ) t = -1.0;
-
     if( u<0.0 || v<0.0 || (u+v)>1.0 ) return false;
     
     if (t < tMin or t > closestSoFar) return false;
@@ -77,5 +70,21 @@ bool ray::hit(triangle tr, rayInfo &rInfo, float closestSoFar, float tMin){
     rInfo.material = tr.material;
     rInfo.color = tr.color;
 
+    return true;
+}
+
+
+bool ray::hit(bvhNode *b, rayInfo &rInfo, float closestSoFar, float tMin){
+    for (int a = 0; a < 3; a++) {
+        auto invD = 1.0f / dir[a];
+        auto t0 = (b->mn[a] - origin[a]) * invD;
+        auto t1 = (b->mx[a] - origin[a]) * invD;
+        if (invD < 0.0f)
+            std::swap(t0, t1);
+        tMin = t0 > tMin ? t0 : tMin;
+       closestSoFar = t1 <closestSoFar ? t1 :closestSoFar;
+        if (closestSoFar <= tMin)
+            return false;
+    }
     return true;
 }

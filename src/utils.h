@@ -3,6 +3,7 @@
 
 #include<bits/stdc++.h>
 #include"../libraries/glm/glm.hpp"
+#include"triangle.h"
 using namespace std;
 
 struct rayInfo{
@@ -22,5 +23,7 @@ glm::vec3 clamp(glm::vec3 val);
 glm::vec3 refract(glm::vec3 rayDir, glm::vec3 n, float refr);
 
 glm::vec3 reflect(glm::vec3 rayDir, glm::vec3 n);
+
+vector<triangle> makeCube(glm::vec3 mnvert, glm::vec3 mxvert, string material, glm::vec3 color);
 
 #endif
