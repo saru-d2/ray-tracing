@@ -3,6 +3,7 @@
 #include "../libraries/glm/glm.hpp"
 #include "camera.h"
 #include "config.h"
+#include "cube.h"
 #include "ray.h"
 #include "scene.h"
 #include "triangle.h"
@@ -22,8 +23,8 @@ int main() {
     // sphere sp4(glm::vec3(-1, 1, -2), 0.2, "diffuse");
     // sphere sp5(glm::vec3(-1, -1, -2), 0.2, "diffuse");
     // sphere sp2(glm::vec3(-100.5, 0, -1), 99, "diffuse");
-   
-    //light
+
+    // light
     triangle tr1(
         vector<glm::vec3>{
             glm::vec3(-2.9, 2, -3.5),
@@ -46,7 +47,7 @@ int main() {
             glm::vec3(0, 0.5, -2),
             glm::vec3(0.3, 0, -2.2),
             glm::vec3(0.6, 0.5, -1.8),
-        }, 
+        },
         "mirror");
 
     triangle pyr2(
@@ -54,7 +55,7 @@ int main() {
             glm::vec3(0, 0.5, -2),
             glm::vec3(0.6, 0.5, -1.8),
             glm::vec3(0.3, 1, -2.2),
-        }, 
+        },
         "mirror");
 
     triangle pyr3(
@@ -62,7 +63,7 @@ int main() {
             glm::vec3(0.6, 0.5, -1.8),
             glm::vec3(0.3, 0, -2.2),
             glm::vec3(0.3, 1, -2.2),
-        }, 
+        },
         "mirror");
 
     triangle pyr4(
@@ -70,9 +71,8 @@ int main() {
             glm::vec3(0, 0.5, -2),
             glm::vec3(0.3, 1, -2.2),
             glm::vec3(0.3, 0, -2.2),
-        }, 
+        },
         "mirror");
-        
 
     plane p1(glm::vec3(-1, 0, 0), 3, "checker", conf.cornell_gray);
     plane p2(glm::vec3(1, 0, 0), 3, "diffuse", conf.cornell_gray);
@@ -81,12 +81,25 @@ int main() {
     plane p5(glm::vec3(0, 0, 1), 4, "diffuse", conf.cornell_gray);
     plane p6(glm::vec3(0, 0, -1), 0.5, "diffuse", conf.cornell_gray);
 
+    cube cb1(glm::vec3(-1, -1, -1.5), glm::vec3(-0.5, -0.5, -1), "diffuse",
+             conf.magenta);
 
-    scene scn(vector<sphere>{sp1, sp2}, vector<plane>{p1, p2, p3, p4, p5},
-              vector<triangle>{tr1, tr2, pyr1, pyr2, pyr3, pyr4});
+    // scene scn(vector<sphere>{}, vector<plane>{p1, p2, p3, p4, p5},
+    //           vector<triangle>{},
+    //           vector<cube>{cb1});
+
+    // scene scn(vector<sphere>{sp1, sp2}, vector<plane>{p1, p2, p3, p4, p5},
+    //           vector<triangle>{tr1, tr2, pyr1, pyr2, pyr3, pyr4},
+    //           vector<cube>{cb1});
+
+
+
+    vector_objs objs{sp1, sp2, p1, p2, p3, p4, p5, tr1, tr2, pyr1, pyr2, pyr3, pyr4};
+
+    scene scn(objs);
 
     camera cam(conf, scn);
-
+    
     cam.render();
     cam.write_img("output11.ppm");
 }

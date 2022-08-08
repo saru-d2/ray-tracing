@@ -3,6 +3,7 @@
 
 #include"sphere.h"
 #include<vector>
+#include<variant>
 #include"plane.h"
 #include "ray.h"
 #include"triangle.h"
@@ -11,10 +12,8 @@ using namespace std;
 
 class scene{
     public:
-    vector<sphere> spheres;
-    vector<plane> planes;
-    vector<triangle> triangles;
-    scene(vector<sphere> spheres, vector<plane>, vector<triangle>);
+    vector_objs objs;
+    scene(vector_objs objs);
     scene(){}
     bool hit(ray &r, rayInfo &rInfo, float &tMin);
 };

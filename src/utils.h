@@ -4,6 +4,12 @@
 #include<bits/stdc++.h>
 #include"../libraries/glm/glm.hpp"
 using namespace std;
+#define vector_objs vector<std::variant<sphere, cube, triangle, plane>> 
+#define obj std::variant<sphere, cube, triangle, plane> 
+#define id_sphere 0
+#define id_cube 1
+#define id_triangle 2
+#define id_plane 3
 
 struct rayInfo{
     float t = -1;
