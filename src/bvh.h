@@ -18,6 +18,8 @@ class bvhNode {
     vector<triangle *> triangles;
 
     void makeBB();
+    void unionBB(bvhNode &b);
+
 };
 
 class bvh {

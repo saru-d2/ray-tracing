@@ -116,6 +116,7 @@ int main() {
     rlNode->makeBB();
     // rlNode->mn = glm::vec3(0.5, 0.5, -1.5);
     // rlNode->mx = glm::vec3(1, 1, -1);
+    rNode->unionBB(*rlNode);
 
     scene scn(vector<sphere>{sp1, sp2}, vector<plane>{p1, p2, p3, p4, p5}, vtr1,
               bvh1);

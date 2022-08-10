@@ -49,3 +49,8 @@ void bvhNode::makeBB() {
         }
     }
 }
+
+void bvhNode::unionBB(bvhNode &b) {
+    mn = Min(mn, b.mn);
+    mx = Max(mx, b.mx);
+}

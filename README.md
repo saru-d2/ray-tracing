@@ -1,3 +1,9 @@
 # arvr - ray tracing assignment
 
-## lol
+## instructions to run
+
+```bash
+cd src
+make
+./out 
+```
